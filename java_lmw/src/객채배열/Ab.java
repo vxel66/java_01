@@ -1,4 +1,4 @@
-package 연습;
+package 객채배열;
 
 public class Ab {
 	
