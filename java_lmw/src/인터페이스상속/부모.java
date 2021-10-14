@@ -1,4 +1,4 @@
-package 예외;
+package 인터페이스상속;
 
 public class 부모 implements 인터페이스 {
 
