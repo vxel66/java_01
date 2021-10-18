@@ -1,4 +1,4 @@
-package 연습2;
+package 스레드;
 
 public class Music extends Thread {
 
