@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Scanner;
 
-import Day12.Day12_7_Memberfile;
+import 연습02.Day12_7_Memberfile;
 
 public class 회원 {
 
