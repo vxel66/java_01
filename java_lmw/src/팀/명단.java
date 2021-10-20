@@ -8,6 +8,9 @@ public class 명단 <T>{
 		
 		private T[] students;
 		// 생성자 
+		public 명단() {
+			// TODO Auto-generated constructor stub
+		}
 		public 명단( String name , int capacity ) {
 			this.name = name;
 			

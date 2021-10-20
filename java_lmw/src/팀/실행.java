@@ -53,8 +53,11 @@ static Scanner scanner = new Scanner(System.in);
 	}
 	
 	public static void 전체명단출력( ) {
+		명단 명단 = new 명단();
+		for(int i = 0 ; i < 5;i++) {			
 		System.out.println( 명단.getName()+" 수강생명단 : "+ 
 					Arrays.toString( 명단.getStudents() ));
+		}
 	}						
 	
 	
