@@ -1,4 +1,4 @@
-package 연연;
+package 객체리스트_정렬;
 
 public class 성적 implements Comparable<성적>  {
 

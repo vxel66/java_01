@@ -1,8 +1,7 @@
-package 연습;
+package 객체리스트_정렬;
 
-public class 성적 {
+public class 성적 implements Comparable<성적>  {
 
-	int 번호;
 	String 이름;
 	int 국어;
 	int 영어;
@@ -11,9 +10,8 @@ public class 성적 {
 	double 평균;
 	int 석차;
 	
-	public 성적(int 번호, String 이름, int 국어, int 영어, int 수학, int 총점, double 평균, int 석차) {
+	public 성적(String 이름, int 국어, int 영어, int 수학, int 총점, double 평균, int 석차) {
 		super();
-		this.번호 = 번호;
 		this.이름 = 이름;
 		this.국어 = 국어;
 		this.영어 = 영어;
@@ -22,22 +20,20 @@ public class 성적 {
 		this.평균 = 평균;
 		this.석차 = 석차;
 	}
-	public 성적(int 석차) {
-		this.석차 = 석차;
-	}
 	
 	public 성적() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public int get번호() {
-		return 번호;
+	@Override
+	public int compareTo(성적 o) {
+		if(this.총점 > o.get총점()) {
+			return -1;
+		}else if(this.총점 < o.get총점()) {
+			return 1;
+		}else return 0;
 	}
-
-	public void set번호(int 번호) {
-		this.번호 = 번호;
-	}
-
+	
 	public String get이름() {
 		return 이름;
 	}
@@ -93,7 +89,5 @@ public class 성적 {
 	public void set석차(int 석차) {
 		this.석차 = 석차;
 	}
-	
-	
 	
 }

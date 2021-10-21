@@ -1,25 +1,22 @@
-package 연습;
+package 인터페이스상속;
 
+public class 부모 implements 인터페이스 {
 
-
-public class 회원 {
-
-	//필드
+		//필드
 	
-	private String m_id;
-	private String m_pw;
-	private String admin ="admin";
-	//생성자
-	public 회원(String m_id, String m_pw) {
-		
-		this.m_id = m_id;
-		this.m_pw = m_pw;
-	}
-	public 회원() {
-		// TODO Auto-generated constructor stub
-	}
+		private String m_id;
+		private String m_pw;
+		private String admin ="admin";
+		//생성자
+		public 부모(String m_id, String m_pw) {
+			
+			this.m_id = m_id;
+			this.m_pw = m_pw;
+		}
+		public 부모() {
+			// TODO Auto-generated constructor stub
+		}
 	
-	//메소드
 	public void 회원메뉴() {
 		System.out.println("1.도서목록 2.대여. 3.반납 4.로그아웃");
 		System.out.println("선택 : "); int ch = Practice.scanner.nextInt();
@@ -82,7 +79,7 @@ public class 회원 {
 			}
 			System.out.println("비밀번호 입력");String pw = Practice.scanner.next();
 			
-			회원 idpw = new 회원(id, pw);
+			부모 idpw = new 부모(id, pw);
 			for(int i = 0; i<Practice.members.length; i++) {
 				if(Practice.members[i]==null) {
 					Practice.members[i]=idpw;
@@ -95,7 +92,7 @@ public class 회원 {
 		
 	}
 	
-	public static boolean 아이디체크( String id) {
+	public boolean 아이디체크( String id) {
 		for(int i = 0; i < Practice.members.length ; i++) {
 			//   ******
 			if( Practice.members[i] != null &&
@@ -108,23 +105,18 @@ public class 회원 {
 		return false;
 	}
 	
-	
-	
-	
 	//게터 세터
-	public String getM_id() {
-		return m_id;
-	}
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
-	}
-	public String getM_pw() {
-		return m_pw;
-	}
-	public void setM_pw(String m_pw) {
-		this.m_pw = m_pw;
-	}
-	
-	
+		public String getM_id() {
+			return m_id;
+		}
+		public void setM_id(String m_id) {
+			this.m_id = m_id;
+		}
+		public String getM_pw() {
+			return m_pw;
+		}
+		public void setM_pw(String m_pw) {
+			this.m_pw = m_pw;
+		}
 	
 }

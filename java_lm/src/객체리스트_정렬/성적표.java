@@ -1,4 +1,4 @@
-package 연연;
+package 객체리스트_정렬;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +24,9 @@ public class 성적표 {
 						}
 					}
 				}
-				
+				// 리스트 정렬 메소드 
+				// 객체리스트는 에러
+				// Comparable인터페이스 사용 오버라이드로 정렬조건 작성
 				Collections.sort(arrayList);
 				
 				System.out.println("성적표");
