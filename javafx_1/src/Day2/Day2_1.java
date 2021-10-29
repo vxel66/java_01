@@ -1,4 +1,4 @@
-package app;
+package Day2;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,31 +6,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Appstart extends Application {
-	
-	@Override
+public class Day2_1 extends Application {
+
+@Override
 	public void start(Stage stage) throws Exception {
-		
-		Parent parent = FXMLLoader.load( getClass().getResource("/fxml/login.fxml"));
-		Scene scene = new Scene( parent );
+		//씬빌더 파일 가져오기
+			//1. parent 
+		Parent parent = FXMLLoader.load(getClass().getResource("test01.fxml"));
+		Scene scene = new Scene(parent);
 		stage.setScene(scene);
-			stage.setResizable(false); // 스테이지 크기 고정 
-			
+	
 		stage.show();
 		
-	}
+	}	
+	
 	public static void main(String[] args) {
 		launch(args);
+		
 	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
