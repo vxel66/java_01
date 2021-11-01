@@ -1,0 +1,42 @@
+	
+	
+		DML [조작어]
+			1. SQL 작성 [SQL : DB 조작어 DML]
+					 삽입 :insert info 테이블명( 필드1 , 필드2 ) + values(값1,값2) 
+						모든 필드 삽입 : insert into 테이블명 value(값1,값2) - 필드명 생략
+			2.검색: select 필드명 from 테이블명 wehere 조건
+					*모든필드 겁색 : select*from 테이블명 where 조건
+					*모든필드 검색시 : *(와일드카드)
+			3.삭제 delet
+			
+			4.수정 update
+			
+			*키워드	
+				1.where :조건
+				2.and :이면서 
+				3.or : 또는
+				
+			 
+			 Connection connection;	//db 연결 인터페이스
+			 PreparedStatement preparedStatement; //sql 연결 인터페이스
+			 ResultSet resultSet;				// sql 결과(쿼리) 연결	
+			 	*? 에 데이터 넣기
+			 
+			 .next : 퀄리 결과의 다음 레코드 가져오기
+			 .get자료형 : 현재 레코드의 필드 가져오기 
+			
+			*CRUD [생성,읽기,수정,삭제]
+		
+			*MVC [ Model , View , Controller ]	
+				1.Model :데이터
+				2.View : 프론트엔드 [씬빌더.html]
+				3.Controller :java파일[클래스]
+				삽입:View --> DTO ---> Controller ---> Model ---> dao --->DB
+				조회:View <-- dto <-- Controller <--- Model <--- dao <--- DB
+			
+			
+			*DTO : 데이터 이동 객체 [Data Transter Object]
+			
+			*DAO : 데이베이스 기능 조작 객체 [Data Access Object]
+			
+			

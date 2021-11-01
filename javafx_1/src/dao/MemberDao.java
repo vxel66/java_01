@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud.Delete;
+
 import Domain.Member;
 
 
@@ -14,9 +16,9 @@ public class MemberDao {
 	//jdbc 주요 인터페이스 , 클래스
 		//1.Connection : DB변경 인터페이스 [DriverManager 클래스]
 	//1.필드
-		private Connection connection;
+		private Connection connection;	//db 연결 인터페이스
 		private PreparedStatement preparedStatement; //sql 연결 인터페이스
-		private ResultSet resultSet;				//
+		private ResultSet resultSet;				// sql 결과(쿼리) 연결
 		
 		private static MemberDao memberDao =new MemberDao();
 		
@@ -37,8 +39,21 @@ public class MemberDao {
 		//기본 메소드
 		//1. 회원가입 메소드
 		public boolean signup (Member member) {
-			
+			//DML [조작어]
 			//1. SQL 작성 [SQL : DB 조작어 DML]
+					// 삽입 :insert info 테이블명( 필드1 , 필드2 ) + values(값1,값2) 
+						//모든 필드 삽입 : insert into 테이블명 value(값1,값2) - 필드명 생략
+			//2.검색: select 필드명 from 테이블명 wehere 조건
+					//*모든필드 겁색 : select*from 테이블명 where 조건
+					//*모든필드 검색시 : *(와일드카드)
+			//3.삭제 delet
+			//4.수정 update
+			
+			//*키워드	
+				//1.where :조건
+				//2.and :이면서 
+				//3.or : 또는
+			
 			String sql = "insert into member(m_id, m_password, m_name, m_email, m_point)" + "values(?,?,?,?,?)";
 			
 			//2. SQL --> DB연결  [ PreparedStatement 인터페이스 : 연결된 DB에 SQL 조작]
@@ -147,7 +162,54 @@ public class MemberDao {
 			}
 		//5.회원수정 메소드
 		
-		//6. 회원탈퇴 메소드 
+		//6. 회원탈퇴 메소드
+		public boolean delete(String id) {
+			String sql = "delete  from member where m_email=?";
+						//delete from 테이블명
+						//delete from 테이블명 where 조건			
+			try {
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, id);
+				preparedStatement.executeUpdate();
+				return true; //삭제 성공시 true
+				
+			} catch (SQLException e) {
+				return false;
+			}
+			
+		}
+		
+		//7.회원조회 메소드 [회원 아이디를 인수로받아 회원정보를 반환
+		public Member getmember(String loginid) {
+			
+			//1.sql 작성
+			String sql = "select * from member where m_id=?";
+			//2.sql 연결
+			try {
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, loginid);
+				resultSet = preparedStatement.executeQuery();
+				if(resultSet.next()) {
+					//패스워드를 제외한 회원정보 변환
+					Member member = new Member(resultSet.getString(1), resultSet.getString(2), resultSet.getString(4), resultSet.getString(5), resultSet.getInt(6));
+				return member;
+				}else {
+					return null;
+				}
+				
+				
+			} catch (SQLException e) {
+				return null;
+			}
+			//3.sql조작
+			
+			//4.sql 조작
+			
+			//5.sql 결과
+			
+		}
+		
+		
 		
 		
 }

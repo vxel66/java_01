@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -16,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
 										// 초기화 관련된 메소드 제공
@@ -31,6 +34,9 @@ public class LoginController implements Initializable {
 		return instance;
 	}
 	
+	public String getid() {
+		return txtid.getText();
+	}
 	// fxml 실행시 초기값 설정 메소드 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -63,6 +69,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private PasswordField txtpassword;
+   
 
     @FXML
     void findid(MouseEvent event) {
@@ -81,6 +88,26 @@ public class LoginController implements Initializable {
     boolean result =MemberDao.getMemberDao().login(txtid.getText(), txtpassword.getText());
     	if(result ) {
     		lblconfirm.setText(" 로그인 성공 ");
+    		
+    		//기존 스테이지 종료
+    		btnlogin.getScene().getWindow().hide(); //해당 버튼의 씬 윈도우 숨기기
+    		
+    		
+    		// 메인페이지 스테이지
+    			Stage stage = new Stage();
+			try {
+				Parent parent;
+				parent = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));    		
+	    		Scene scene = new Scene(parent);
+	    		stage.setScene(scene);
+	    		
+	    		stage.show();
+			} catch (IOException e) {
+				
+			}
+    		
+    		
+    		
     	}else {
     		lblconfirm.setText(" 로그인 실패 : 동일한 회원정보가 없습니다");
     	} 	

@@ -90,7 +90,7 @@ public class Member {
 							//tomail 받는사람  // msg 내용물   //type 메일 타입
 		//보내는 사람 정보
 		String frommail = "alsdnr5341@naver.com";
-		String frompassword = "rkqkdy5341";
+		String frompassword = "";
 		
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.naver.com");
