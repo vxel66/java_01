@@ -2,16 +2,20 @@
 	
 		DML [조작어]
 			1. SQL 작성 [SQL : DB 조작어 DML]
-					 삽입 :insert info 테이블명( 필드1 , 필드2 ) + values(값1,값2) 
+					 삽입 :insert into 테이블명( 필드1 , 필드2 ) + values(값1,값2) 
+					"insert into board(b_title , b_contents ,b_write) value(?,?,?)";					 
 						모든 필드 삽입 : insert into 테이블명 value(값1,값2) - 필드명 생략
+			
 			2.검색: select 필드명 from 테이블명 wehere 조건
+					"select m_id from member where m_id=?";
 					*모든필드 겁색 : select*from 테이블명 where 조건
 					*모든필드 검색시 : *(와일드카드)
+			
 			3.삭제 delet from 테이블명 value (값1)
-					
-			
+					"delete  from member where m_email=?";	
+				
 			4.수정 update 테이블명 set value(값1,값2) 
-			
+					"update member set m_name = ? ,m_email =? where m_id = ?"
 			*키워드	
 				1.where :조건
 				2.and :이면서 
@@ -22,7 +26,18 @@
 			 PreparedStatement preparedStatement; //sql 연결 인터페이스
 			 ResultSet resultSet;				// sql 결과(쿼리) 연결	
 			 	*? 에 데이터 넣기
-			 
+			 	
+			 	public MemberDao() {
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx?serverTime=UTC","root","1234");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+			 			 
 			 .next : 퀄리 결과의 다음 레코드 가져오기
 			 .get자료형 : 현재 레코드의 필드 가져오기 
 			
