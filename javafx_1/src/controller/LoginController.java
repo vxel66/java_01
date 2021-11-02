@@ -87,7 +87,9 @@ public class LoginController implements Initializable {
     void login(ActionEvent event) {
     boolean result =MemberDao.getMemberDao().login(txtid.getText(), txtpassword.getText());
     	if(result ) {
+    		
     		lblconfirm.setText(" 로그인 성공 ");
+    		MemberDao.getMemberDao().pointupdate(txtid.getText(), 10);
     		
     		//기존 스테이지 종료
     		btnlogin.getScene().getWindow().hide(); //해당 버튼의 씬 윈도우 숨기기

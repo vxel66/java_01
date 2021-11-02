@@ -7,9 +7,10 @@
 			2.검색: select 필드명 from 테이블명 wehere 조건
 					*모든필드 겁색 : select*from 테이블명 where 조건
 					*모든필드 검색시 : *(와일드카드)
-			3.삭제 delet
+			3.삭제 delet from 테이블명 value (값1)
+					
 			
-			4.수정 update
+			4.수정 update 테이블명 set value(값1,값2) 
 			
 			*키워드	
 				1.where :조건
@@ -38,5 +39,73 @@
 			*DTO : 데이터 이동 객체 [Data Transter Object]
 			
 			*DAO : 데이베이스 기능 조작 객체 [Data Access Object]
+			
+			게시판설계
+			1.DB설계
+				게시물번호
+				게시물제목
+				게시물내용
+				게시물작성자 로그인id
+				게시물작성일 자동주입
+				게시물조회수
+				
+			
+			2.DTO설계
+			3.DAO설계
+			
+			4.FXML 작성
+			5.CONTROLLER작성
+			6.DAO 작성
+			
+			자료형
+			int 정수
+			varchar 문자열
+			timestamp 날짜/ 시간
+			
+			속성
+			pri
+			
+			PK:식별 가능한키 [실별필드 : 중복 x , NULL x]
+				ex)주민등록번호,사번,학번,카드번호,사업장번호,주소
+				다른 테이블과 연결시 사용되는 식별키 [대부분 1]
+				
+			FK:PK와 연결된 필드	
+				외래키	
+				다른 테이블의 PK왕 연결된 필드 [대부분 M]	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			

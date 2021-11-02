@@ -74,7 +74,6 @@ public class MemberDao {
 				
 				
 				
-				
 			} catch (Exception e) {
 				return false;
 			}
@@ -82,6 +81,24 @@ public class MemberDao {
 			
 			
 			
+		}
+		
+		//아이디 체크 메소드
+		
+		public boolean idcheck(String id) {
+			try {
+			String sql = "select m_id from member where m_id=?";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, id);
+			resultSet=preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				return true;
+			}else {
+				return false;
+			}			
+			}catch (Exception e) {
+				return false;
+			}
 		}
 		
 		//2. 로그인 메소드
@@ -109,12 +126,23 @@ public class MemberDao {
 			} catch (Exception e) {
 				return false;// db오류
 			}
-			
-			
-			
-			
-			
+	
 		}
+		//포인트 증감 메소드
+		public boolean pointupdate(String id, int point) {
+			String sql = "update member set m_point = m_point+? where m_id =?";
+			try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, point);
+			preparedStatement.setString(2, id);
+			preparedStatement.executeUpdate();
+			return true;
+			}
+			catch (Exception e) {
+				return false;
+		}
+		}
+		
 		
 		//3. 아이디 찾기 메소드
 		public String findid(String name, String email) {
@@ -161,6 +189,22 @@ public class MemberDao {
 			}
 			}
 		//5.회원수정 메소드
+		public boolean update( String name, String email, String id) {
+			String sql = "update member set m_name = ? ,m_email =? where m_id = ?";
+			
+			try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, name);
+			preparedStatement.setString(2, email);
+			preparedStatement.setString(3, id);
+			preparedStatement.executeUpdate();
+			return true;
+			}catch (Exception e) {
+				return false;
+			}
+			
+		}
+		
 		
 		//6. 회원탈퇴 메소드
 		public boolean delete(String id) {
