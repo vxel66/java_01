@@ -2,13 +2,7 @@ package Domain;
 
 import java.util.Properties;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+
 
 
 public class Member {
@@ -86,49 +80,7 @@ public class Member {
 	}
 	
 	//이메일 전송 메소드
-	public static void sendmail(String tomail , String msg , int type) {
-							//tomail 받는사람  // msg 내용물   //type 메일 타입
-		//보내는 사람 정보
-		String frommail = "alsdnr5341@naver.com";
-		String frompassword = "";
-		
-		Properties properties = new Properties();
-		properties.put("mail.smtp.host", "smtp.naver.com");
-		properties.put("mail.smtp.port", 587);
-		properties.put("mail.smtp.auth", true);
-		
-		Session session = Session.getDefaultInstance(properties,new Authenticator() {
-			//익명 구현객체
-			
-		@Override
-		protected PasswordAuthentication getPasswordAuthentication() {
-			return new PasswordAuthentication(frommail, frompassword);
-		}
-		}); //인증 끝
-		
-		//메일 보내기
-	try {	
-		MimeMessage message = new MimeMessage(session);
-		message.setFrom(new InternetAddress(frommail));
-		message.addRecipient(Message.RecipientType.TO, new InternetAddress(tomail));
-		
-		if(type ==2) {
-			message.setSubject("패스워드");
-			message.setText("회원님의 비밀번호"+msg);
-		}
-		Transport.send(message);
-		
-	}catch (Exception e) {
-		// TODO: handle exception
-	}
-		
-		
-		
-		
-		
-		
-		
-	}
+	
 	
 	
 	

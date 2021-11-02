@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="lblemail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MyinfoController">
+   <children>
+      <Label layoutX="86.0" layoutY="216.0" text="ID" />
+      <Label fx:id="lblid" layoutX="166.0" layoutY="216.0" text="id" />
+      <Label layoutX="86.0" layoutY="261.0" text="NAME" />
+      <Label fx:id="lblname" layoutX="166.0" layoutY="261.0" text="name" />
+      <Label layoutX="86.0" layoutY="298.0" text="EMAIL" />
+      <Label fx:id="labelemail" layoutX="166.0" layoutY="298.0" text="email" />
+      <Button fx:id="btndelete" layoutX="56.0" layoutY="426.0" mnemonicParsing="false" onAction="#delete" prefHeight="35.0" prefWidth="205.0" text="delete" />
+      <Button fx:id="btnupdate" layoutX="56.0" layoutY="376.0" mnemonicParsing="false" onAction="#update" prefHeight="35.0" prefWidth="205.0" text="update" />
+      <TableView layoutX="300.0" layoutY="324.0" prefHeight="277.0" prefWidth="400.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="num" />
+            <TableColumn prefWidth="75.0" text="name" />
+            <TableColumn prefWidth="75.0" text="Brand" />
+            <TableColumn prefWidth="75.0" text="Category" />
+            <TableColumn prefWidth="75.0" text="Price" />
+         </columns>
+      </TableView>
+      <TableView layoutX="300.0" layoutY="23.0" prefHeight="277.0" prefWidth="400.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="name" />
+            <TableColumn prefWidth="75.0" text="Title" />
+            <TableColumn prefWidth="75.0" text="Date" />
+            <TableColumn prefWidth="75.0" text="View" />
+         </columns>
+      </TableView>
+      <Label layoutX="88.0" layoutY="81.0" prefHeight="35.0" prefWidth="105.0" text="My">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="85.0" layoutY="107.0" prefHeight="48.0" prefWidth="194.0" text="infomation">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="300.0" layoutY="3.0" prefHeight="20.0" prefWidth="127.0" text="My community" />
+      <Label layoutX="300.0" layoutY="305.0" prefHeight="20.0" prefWidth="127.0" text="My product" />
+      <Line endX="100.0" layoutX="149.0" layoutY="173.0" startX="-63.0" />
+      <Label layoutX="86.0" layoutY="332.0" text="POINT" />
+      <Label fx:id="lblpoint" layoutX="166.0" layoutY="332.0" text="point" />
+   </children>
+</AnchorPane>

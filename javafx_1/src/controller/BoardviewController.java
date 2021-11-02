@@ -21,7 +21,7 @@ public class BoardviewController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		
-		Board board = new Board();
+		Board board = BoardlistController.board;
 		txttitle.setText(board.getB_title());
 		txtcontente.setText(board.getB_contets());
 		if(!MainpageController.getinstance().getloginid().equals(board.getB_write())) {

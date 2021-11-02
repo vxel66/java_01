@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud.Delete;
 
 import Domain.Member;
 
@@ -25,7 +24,7 @@ public class MemberDao {
 		public MemberDao() {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx?serverTime=UTC","root","1234");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx?serverTime=UTC","root","1234");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

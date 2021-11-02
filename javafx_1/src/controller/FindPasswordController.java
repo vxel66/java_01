@@ -51,8 +51,7 @@ public class FindPasswordController implements Initializable {
 	    	String result = MemberDao.getMemberDao().findpassword(txtid.getText(), txtemail.getText());
 	    	
 	    	if(result!=null) {
-	    		Member.sendmail(txtemail.getText(), result, 2);
-	    		
+	    			    		
 	    		lblconfirm.setText("이메일 전송");
 	    	}else {
 	    		lblconfirm.setText("실패");
