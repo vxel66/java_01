@@ -22,45 +22,50 @@ import javafx.scene.layout.AnchorPane;
 
 public class BoardlistController implements Initializable {
 	
-	memberdao memberDao = new memberdao();
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		System.out.println(BoardDao.getboardDao().boardlist().get(1).getB_title());
-//	ObservableList<Board> boards = BoardDao.getboardDao().boardlist();
-//	
-//	TableColumn tc = boardlist.getColumns().get(0);
-//	tc.setCellValueFactory( new PropertyValueFactory<>("b_no"));
-//	
-////	tc = boardlist.getColumns().get(1);
-////	tc.setCellValueFactory(new PropertyValueFactory<>("b_title"));
-////	
-////	tc = boardlist.getColumns().get(2);
-////	tc.setCellValueFactory(new PropertyValueFactory<>("b_write"));
-////	
-////	tc = boardlist.getColumns().get(3);
-////	tc.setCellValueFactory(new PropertyValueFactory<>("b_date"));
-////	
-////	tc = boardlist.getColumns().get(4);
-////	tc.setCellValueFactory(new PropertyValueFactory<>("b_view"));
-////	
-//	
-//	boardlist.setItems(boards);
-//	
-//	
+		
+		ObservableList<Board> boards =  BoardDao.getboardDao().boardlist();
+		// 2. 테이블뷰의 필드 가져오기  
+		TableColumn tc = boardlist.getColumns().get(0);// 테이블뷰의 첫번째 필드 
+		tc.setCellValueFactory( new PropertyValueFactory<>("b_no"));
+	
+	tc = boardlist.getColumns().get(1);
+	tc.setCellValueFactory(new PropertyValueFactory<>("b_title"));
+	
+	tc = boardlist.getColumns().get(2);
+	tc.setCellValueFactory(new PropertyValueFactory<>("b_write"));
+	
+	tc = boardlist.getColumns().get(3);
+	tc.setCellValueFactory(new PropertyValueFactory<>("b_date"));
+	
+	tc = boardlist.getColumns().get(4);
+	tc.setCellValueFactory(new PropertyValueFactory<>("b_view"));
+	
+	
+	boardlist.setItems(boards);
+
+	boardlist.setOnMouseClicked( e -> { 
+		if( e.getButton().equals( MouseButton.PRIMARY ) ) { // 해당 이벤트가 클릭이면 
+			board = boardlist.getSelectionModel().getSelectedItem();
+							// 테이블뷰에 선택된 모델의 아이템[ 객체 ]
+			MainpageController.getinstance().loadpage("boardview");
+		}
+	} ) ;	
 	
 	
 	}
-
+	public static Board board; 
 	
+
     @FXML
     private TableView<Board> boardlist;
-    
-    
+
     @FXML
     private Button btnwrite;
-    
+
     @FXML
     private AnchorPane pane;
 
