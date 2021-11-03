@@ -1,0 +1,48 @@
+
+
+
+ObservableList javafx 사용하는 컬렉션프레임워크
+	1.테이블에 리스트 세팅: Tableview 에 리스트 넣을때 setitems( ObservableList )
+	
+	2.테이블 필드에 리스트내 객체 세팅					
+		1.테이블내 필드 가져오기
+			TableColumn tc =테이블뷰이름.getColumns().get(열번호);
+			TableColumn tc =boardlist.getColumns().get(0);
+		2.해당 열에 객체값 넣기
+			열이름.setCellValueFactory( new PropertyValueFactory<>(열이름));
+			tc.setCellValueFactory( new PropertyValueFactory<>("b_no"));
+			*리스트내 연결된 클래스내 필드와 필드면 동일하게
+			
+*테이블뷰 클릭한 아이템 (객체)		
+		
+	1.테이블뷰이름.getSelectionModel().getSelectedItem();		
+		*테이블뷰에서 클릭한 모델의 아이템(객체)			
+	
+	화면전환
+		*로드페이지 메소드
+		   public void loadpage( String page ) {
+	    	try {
+	    		Parent parent = FXMLLoader.load(
+	    				getClass().getResource("/fxml/"+page+".fxml"));
+	    		mainpageborder.setCenter(parent);
+	    	}
+	    	catch (Exception e) {}
+	    }
+		
+		0.다른 페이지에서 로드페이지 메소드 호출
+			
+		1.현재 클래스 객체화
+		//변수 선언
+	    public static MainpageController instance;
+	    
+	    //생성자
+	    public MainpageController() {
+	    	instance = this; //this: 현재 클래스의 전체 메모리 복사
+	    }
+	    
+	    //인스턴스 변환 메소드
+	    public static MainpageController getinstance() {
+	    	return instance;
+	    }
+	    
+	

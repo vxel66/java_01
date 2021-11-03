@@ -1,31 +1,39 @@
 	
 	
 		DML [조작어]
-			1. SQL 작성 [SQL : DB 조작어 DML]
-					 삽입 :insert into 테이블명( 필드1 , 필드2 ) + values(값1,값2) 
+			0. SQL 작성 [SQL : DB 조작어 DML]
+					
+			1. 삽입 :insert into 테이블명( 필드1 , 필드2 ) + values(값1,값2) 
 					"insert into board(b_title , b_contents ,b_write) value(?,?,?)";					 
-						모든 필드 삽입 : insert into 테이블명 value(값1,값2) - 필드명 생략
+					모든 필드 삽입 : insert into 테이블명 value(값1,값2) - 필드명 생략
 			
 			2.검색: select 필드명 from 테이블명 wehere 조건
 					"select m_id from member where m_id=?";
 					*모든필드 겁색 : select*from 테이블명 where 조건
 					*모든필드 검색시 : *(와일드카드)
 			
-			3.삭제 delet from 테이블명 value (값1)
+			3.삭제 delete from 테이블명 value (값1)
 					"delete  from member where m_email=?";	
 				
-			4.수정 update 테이블명 set value(값1,값2) 
+			4.수정 update 테이블명 set 변경필드=값1 ,변경필드=값2
 					"update member set m_name = ? ,m_email =? where m_id = ?"
+					
+					
 			*키워드	
 				1.where :조건
 				2.and :이면서 
 				3.or : 또는
 				
+
 			 
 			 Connection connection;	//db 연결 인터페이스
 			 PreparedStatement preparedStatement; //sql 연결 인터페이스
 			 ResultSet resultSet;				// sql 결과(쿼리) 연결	
 			 	*? 에 데이터 넣기
+			 	
+			 	executeQuery : select
+				executeUpdate :	insert, delete, update
+				
 			 	
 			 	public MemberDao() {
 			try {
@@ -88,7 +96,37 @@
 				외래키	
 				다른 테이블의 PK왕 연결된 필드 [대부분 M]	
 			
-			
+			SQL 데이터베이스 관리 언어
+				DDL[정의어]
+					1.Create :생성
+						DB:create database db명
+						Table:create table db명.테이블명(
+							필드명 자료형 속성,
+							필드명2 자려형 속성
+						)
+						create table javafx.board( 
+    					b_no int auto_increment primary key ,
+   						b_title varchar(100) not null ,
+    					b_contents varchar(5000) not null ,
+   						b_write varchar(15) not null ,
+    					b_date timestamp default now() ,
+    					b_view int default 0
+						)
+						
+						자료형 
+							1.int				정수형 [4바이트]
+							2.vaechar(문자길이)	문자형 [가변길이]	
+							3.timestamp			날짜/시간
+						속성
+							1.primary key 		:기본키
+							2.auto_increment	:자동번호 주입
+							3.not null			:null값 제외 [null일경우 오류발생]
+							4.default			:자동 초기값 주입
+						함수
+							1.now():시스템날짜 시간함수		
+					
+					2.Drop :삭제
+					3.Alter :수정
 			
 			
 			

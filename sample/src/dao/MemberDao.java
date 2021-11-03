@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-import Domain.Member;
+import domain.Member;
 
 
 public class MemberDao {

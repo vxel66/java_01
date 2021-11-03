@@ -20,7 +20,7 @@ import javafx.scene.input.MouseButton;
 public class BoardlistController implements Initializable {
 	
 	
-	public static Board board;
+	
 	
 
 
@@ -52,6 +52,7 @@ public class BoardlistController implements Initializable {
 			if(e.getButton().equals(MouseButton.PRIMARY)) {
 				board = boardlist.getSelectionModel().getSelectedItem();
 				//조회수 증가
+				BoardDao.getBoardDao().viewupdate(board.getB_no(), 1);
 				
 				MainpageController.getinstance().loadpage("boardview");
 				
@@ -62,7 +63,7 @@ public class BoardlistController implements Initializable {
 		
 		
 	}
-	
+	public static Board board;
 
     @FXML
     private TableView<Board> boardlist;
