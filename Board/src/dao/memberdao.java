@@ -19,7 +19,7 @@ public class memberdao {
 	public memberdao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx?serverTimeZonse=UTC", "root",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx?serverTimeZonse=UTC", "root",
 														"1234");
 		} catch (Exception e) {
 		}
