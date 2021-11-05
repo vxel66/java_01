@@ -28,25 +28,9 @@ public class ProductlistController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) { //화면 로드 되었을때 초기화 
 		
-		
-		
-//		ObservableList<Product> products = ProductDao.getProductDao().productlist();
-//		//2 제ㅜㅁ등록 리스트를 테이블로 옮기기
-//		//3.테이블뷰에 필드를 가져와 리스트내 필드와 연결
-//		TableColumn tc = productlist.getColumns().get(0);
-//		tc.setCellValueFactory(new PropertyValueFactory<>("p_name"));
-//		
-//		tc = productlist.getColumns().get(1);
-//		tc.setCellValueFactory(new PropertyValueFactory<>("p_category"));
-//		
-//		tc = productlist.getColumns().get(2);
-//		tc.setCellValueFactory(new PropertyValueFactory<>("p_price"));
-//		
-//		tc = productlist.getColumns().get(3);
-//		tc.setCellValueFactory(new PropertyValueFactory<>("p_activation"));
-//		
-//		productlist.setItems(products);
 		tableload();
+		
+		btnactivation.setVisible(false);
 		
 		productlist.setOnMouseClicked(e->{
 			if(e.getButton().equals(MouseButton.PRIMARY)) {
@@ -66,11 +50,18 @@ public class ProductlistController implements Initializable {
 				if(MainpageController.getinstance().getloginid().equals(ProductDao.getProductDao().idcheck(product.getM_no()))) {
 					btnupdate.setVisible(true);
 					btndelete.setVisible(true);
+					btnactivation.setVisible(true);
+				}else {
+					
 				}
 			}
 		});
 		
+		
 	}
+	
+    @FXML
+    private Button btnactivation;
 	
 	public static Product product;
 
@@ -100,7 +91,35 @@ public class ProductlistController implements Initializable {
 
     @FXML
     private TableView<Product> productlist;
-
+    
+    
+    
+    @FXML
+    void activation(ActionEvent event) {
+    	
+    	btnactivation.setText(product.getAct());
+    	int pa = product.getP_activation();
+    	product.setP_activation(product.getP_activation()+1);
+    	int ch = pa+1;
+    	if(ch>3) ch=1;
+    	
+    	if(ch==1) {ProductDao.getProductDao().activationupdate(1, product.getP_no());
+    	tableload();
+    	btnactivation.setText("판매중");
+    	}
+    	
+    	if(ch==2) {ProductDao.getProductDao().activationupdate(2, product.getP_no());
+    	tableload();
+    	btnactivation.setText("거래중");
+    	}
+    	
+    	if(ch==3) {ProductDao.getProductDao().activationupdate(3, product.getP_no());
+    	tableload();
+    	btnactivation.setText("거래완료");
+    	}
+    	
+    }
+    
     @FXML
     void delete(ActionEvent event) {
     
@@ -145,7 +164,7 @@ public class ProductlistController implements Initializable {
 		tc.setCellValueFactory(new PropertyValueFactory<>("p_price"));
 		
 		tc = productlist.getColumns().get(3);
-		tc.setCellValueFactory(new PropertyValueFactory<>("p_activation"));
+		tc.setCellValueFactory(new PropertyValueFactory<>("act"));
 		
 		tc = productlist.getColumns().get(4);
 		tc.setCellValueFactory(new PropertyValueFactory<>("p_date"));

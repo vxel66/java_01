@@ -11,7 +11,8 @@ public class Product {
 		private int p_activation ;
 		private String p_date ;
 		private int m_no ;
-	    
+	    private String act;
+		
 	public Product() {
 		
 	}
@@ -28,6 +29,15 @@ public class Product {
 		this.p_activation = p_activation;
 		this.p_date = p_date;
 		this.m_no = m_no;
+		
+		if(p_activation == 1) {
+			act = "판매";
+		}if(p_activation == 2) {
+			act = "거래중";
+		}
+		if(p_activation == 3) {
+			act = "거래완료";
+	}
 	}
 
 	public Product(String p_name, String p_img, String p_contents, String p_category, int p_price, int p_activation,
@@ -40,6 +50,24 @@ public class Product {
 		this.p_price = p_price;
 		this.p_activation = p_activation;
 		this.m_no = m_no;
+		
+		if(p_activation == 1) {
+			act = "판매";
+		}if(p_activation == 2) {
+			act = "품절";
+		}	if(p_activation == 3) {
+			act = "거래완료";
+	}
+		
+	}
+
+	
+	public String getAct() {
+		return act;
+	}
+
+	public void setAct(String act) {
+		this.act = act;
 	}
 
 	public int getP_no() {

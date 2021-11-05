@@ -144,6 +144,45 @@ public class ProductDao {
 			}
 		}
 		
+		//마이인포 제품리스트
+		public ObservableList<Product> myproductlist(int m_no){
+			
+			ObservableList<Product> products = FXCollections.observableArrayList();
+			String sql = "select *from product where m_no=? order by p_no desc";
+			try {
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setInt(1,m_no );
+				resultSet = preparedStatement.executeQuery();
+				
+				while(resultSet.next()) { //검색 결과 레코드가 없을대까지 레코드 하나씩 변환
+					//해당 레코드르르 객채화
+					Product product = new Product( resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),resultSet.getString(5), resultSet.getInt(6), resultSet.getInt(7), resultSet.getString(8),resultSet.getInt(9));
+					products.add(product);
+					//객체 리스트에 저장
+				}return products;
+				
+			}catch (Exception e) {
+				return products;
+			}
+			
+		}
+		//상태 활성화
+		public boolean activationupdate( int p_activation , int p_no) {
+			String sql = "update product set p_activation =? where p_no=?";
+			try {
+				preparedStatement=connection.prepareStatement(sql);
+				preparedStatement.setInt(1, p_activation);
+				preparedStatement.setInt(2, p_no);
+				preparedStatement.executeUpdate();
+				return true;
+				
+				
+			}catch (Exception e) {
+				return false;
+			}
+			
+		}
+		
 		
 		
 }

@@ -153,6 +153,29 @@ public class BoardDao {
 			
 		};
 	
+		//인포 보더리스트
+		public ObservableList<Board> infoboardlist(String logid){
+			ObservableList<Board> boards = FXCollections.observableArrayList();
+			String sql = "select * from board where b_write =? order by b_no desc";
+			try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, logid);
+			resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				
+				Board board = new Board(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getInt(6));
+				//객체 리스트에 담기
+				boards.add(board);
+				
+				
+			}
+			return boards;
+			}catch (Exception e) {
+				// TODO: handle exception
+			}return boards;
+		};
+		
 		
 }
 

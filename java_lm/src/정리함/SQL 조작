@@ -129,17 +129,48 @@
 					3.Alter :수정
 			
 			
+					메소드 호출하는 방법
+					1.Controller 인스턴스	[다른 controller 에서 동일한 boardpane 사용] new이용한 객체 x
+													    //객체화
+	    public static MainpageController instance;
+	    
+	    public MainpageController() {
+	    	instance = this;
+	    }
+	    
+	    public static MainpageController getinstance() {
+	    	return instance;
+	    }
+	    
+				2.Dao 인스턴스 [해당 인스턴스 생성시 DB와 연결된 인스턴스 사용]
+			
+			private static BoardDao boardDao = new BoardDao();
+	
+		public static BoardDao getBoardDao() {
+			return boardDao;
+		}
+	
+		//2.생성자 db 연동
+		public BoardDao() {
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx?serverTime=UTC","root","1234");
+			} catch (Exception e) {		
+			}	
+		}
 			
 			
+		v 	입력받음
+
+		c	컨트롤에서 입력받은 값을 객체화 
+				*객체화:캡슐
+
+		m	클래스 [객체]
+				db처리[CRUD]
+				결과
 			
 			
-			
-			
-			
-			
-			
-			
-			
+		
 			
 			
 			

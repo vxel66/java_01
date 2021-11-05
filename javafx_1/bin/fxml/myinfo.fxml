@@ -18,16 +18,16 @@
       <Label fx:id="labelemail" layoutX="166.0" layoutY="298.0" text="email" />
       <Button fx:id="btndelete" layoutX="56.0" layoutY="426.0" mnemonicParsing="false" onAction="#delete" prefHeight="35.0" prefWidth="205.0" text="delete" />
       <Button fx:id="btnupdate" layoutX="56.0" layoutY="376.0" mnemonicParsing="false" onAction="#update" prefHeight="35.0" prefWidth="205.0" text="update" />
-      <TableView layoutX="300.0" layoutY="324.0" prefHeight="277.0" prefWidth="400.0">
+      <TableView fx:id="myproductlist" layoutX="300.0" layoutY="324.0" prefHeight="277.0" prefWidth="400.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="num" />
             <TableColumn prefWidth="75.0" text="name" />
-            <TableColumn prefWidth="75.0" text="Brand" />
             <TableColumn prefWidth="75.0" text="Category" />
-            <TableColumn prefWidth="75.0" text="Price" />
+            <TableColumn prefWidth="103.0" text="Price" />
+            <TableColumn prefWidth="64.0" text="Activation" />
+            <TableColumn prefWidth="82.0" text="Date" />
          </columns>
       </TableView>
-      <TableView layoutX="300.0" layoutY="23.0" prefHeight="277.0" prefWidth="400.0">
+      <TableView fx:id="myboardlist" layoutX="300.0" layoutY="23.0" prefHeight="277.0" prefWidth="400.0">
          <columns>
             <TableColumn prefWidth="75.0" text="name" />
             <TableColumn prefWidth="75.0" text="Title" />

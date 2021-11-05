@@ -27,5 +27,6 @@
       <Button fx:id="btnregister" layoutX="289.0" layoutY="559.0" mnemonicParsing="false" onAction="#register" prefHeight="27.0" prefWidth="397.0" text="제품등록" />
       <Button fx:id="btnupdate" layoutX="162.0" layoutY="124.0" mnemonicParsing="false" onAction="#update" text="수정" visible="false" />
       <Button fx:id="btndelete" layoutX="221.0" layoutY="124.0" mnemonicParsing="false" onAction="#delete" text="삭제" visible="false" />
+      <Button fx:id="btnactivation" layoutX="33.0" layoutY="124.0" mnemonicParsing="false" onAction="#activation" text="판매중" />
    </children>
 </AnchorPane>
