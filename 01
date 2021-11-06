@@ -1,0 +1,24 @@
+   
+      Button[] buttons = new Button[30];         // 버튼 30개 저장소 
+      int z = 0;
+      for( int i = 0 ; i<30 ; i++ ) {
+         
+         buttons[i] = new Button("좌석" + String.format("%02d", i) );      // 메모리 할당 
+         buttons[i].setLayoutX( 30 + (z*60) );
+         
+         if( i % 10 == 0 ) z = 0;
+         if( i / 10 == 1 ) {
+            buttons[i].setLayoutX( 30 + (z*60) );
+            buttons[i].setLayoutY( 50 );
+         }
+         if( i / 20 == 1 ) {
+            buttons[i].setLayoutX( 30 + (z*60) );
+            buttons[i].setLayoutY( 100 );
+         }
+         buttons[i].setOnAction( e -> {
+            System.out.println( e.toString() +"좌석이 선택 되었습니다 ");
+         });
+      
+         loginpane.getChildren().add(buttons[i] ); // 배치 
+         z++;
+      }
