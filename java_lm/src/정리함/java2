@@ -1,0 +1,220 @@
+
+***********************************  JavaFX   *************************************************
+*화면전환 
+	1. 로드페이지 메소드 
+	 public void loadpage( String page ) {
+    	try {
+   		Parent parent = FXMLLoader.load( getClass().getResource("/fxml/"+page+".fxml"));
+    		mainpageborderpane.setCenter(parent);
+    	}
+    	catch (Exception e) {}
+    	}		
+
+2. 다른 클래스에서 로드페이지 메소드 호출하기 위한 객체화 
+		1. 현재 클래스를 객체화 
+	public static MainpageController instance;    // 변수 선언 
+	public MainpageController() { // 생성자 
+	instance = this;  // this : 현 클래스의 전체 메모리
+	}
+	public static MainpageController getinstance() { // 인스턴스 반환 메소드 
+    		return instance;
+ 	}
+*************************************************************************************************
+*메시지
+	Alert alert = new Alert( AlertType.CONFIRMATION );
+    	alert.setTitle("알림");
+    	alert.setHeaderText("정말 회원탈퇴 하시겠습니까?");
+    
+    	Optional<ButtonType> optional = alert.showAndWait();
+    	if( optional.get() == ButtonType.OK) {    
+		
+	}
+	else{
+
+	}
+***************************************************************************************************
+
+*테이블뷰 
+*ObservableList : javafx 사용하는 컬렉션프레임워크
+	* 1. 테이블에 리스트 세팅 : Tableview 에 리스트를 넣을때 setItems( ObservableList  ) 
+	* 2. 테이블 필드에 리스트내 객체 세팅 
+		1. 테이블내 열 가져오기 
+			 TableColumn 열이름 = 테이블뷰이름.getColumns().get( 열번호 );
+		2. 해당 열 에 객체값 넣기 
+			 열이름.setCellValueFactory( new PropertyValueFactory<>(＂필드명 ") );
+			* 리스트내 연결된 클래스내 필드와 필드명과 동일 
+*테이블뷰 클릭한 아이템[ 객체 ]
+	1. 테이블뷰이름.getSelectionModel().getSelectedItem();
+		* 테이블뷰에서 클릭한 모델의 아이템 [ 객체 ]
+		
+**************************************************************************************************
+
+*이미지 경로
+
+ private Stage stage; // 스테이지 
+
+ void imgadd(ActionEvent event) {
+    	FileChooser fileChooser = new FileChooser(); 	// 1. 파일선택 클래스 
+	// 2. 파일선택 필터 설정
+	fileChooser.getExtensionFilters().add( 
+		new ExtensionFilter("그림파일 : Image File" , "*png" , "*jpg" , "*gif" ) );
+	
+	File file =  fileChooser.showOpenDialog(stage);	// 3. 파일선택을 해당 스테이지 열기
+		// 4. 파일선택된 경로를 file 클래스에 저장 
+
+	lblimgpath.setText("파일 경로 : " + file.getPath() );	// 5. 레이블에 경로 표시 
+	pimage = file.toURI().toString(); 			// 6. 실제[realpath] 경로 변수 저장
+	Image image = new Image( pimage );			// 7. 이미지 클래스에 경로 설정
+    	pimg.setImage(image);				// 8. 이미지뷰에 이미지경로 설정
+ } 
+******************************* DATA BASE **********************************************************
+
+*Dao 인스턴스 [ 해당 인스턴스 생성시 DB와 연결된 인스턴스 사용 ]
+	1.필드 선언
+	public static ProductDao productDao = new ProductDao();
+	
+	2.생성자
+	public ProductDao() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			connection = DriverManager.getConnection(
+			"jdbc:mysql://localhost:3307/javafx?serverTimezone=UTC" , "root" , "1234");
+		}catch (Exception e) {}
+	}
+	3. 필드를 반환해주는 메소드 선언 
+	public static ProductDao getProductDao() { return productDao; }
+
+	4. 다른 클래스에서 메소드 호출 
+	ProductDao.getProductDao().register(product);
+	
+****************************************************************************************************
+ 
+ *주요 인터페이스
+ 	1. Connection		DB 연결 인터페이스 
+		* DriverManager.getConnection(  )
+	2. PreparedStatement	SQL 연결 조작 인터페이스 
+		* ? 에 데이터 넣기
+		* preparedStatement.executeQuery(); 		: Select
+		* preparedStatement.executeUpdate(); 		: insert , update , delete
+	3. ResultSet		SQL 결과[쿼리]  연결 인터페이스
+		.next : 쿼리 결과의 다음 레코드 가져오기 
+		.get자료형 : 현재 레코드의 필드 가져오기 
+		
+*****************************    SQL     **************************************************************
+
+*SQL : 데이터베이스 관리 언어
+	DML [ 조작어 ]
+		1. 삽입 : insert into 테이블명( 필드1 , 필드2 ) values( 값1 , 값2 )
+			* 모든필드 삽입 : insert into 테이블명 values( 값1 , 값2 , 값3 )
+			* 모든필드 삽입시 : 필드명 생략   
+
+		2. 검색 : select 필드명 from 테이블명 where 조건 
+			* 모든필드 검색 : select * from 테이블명 where 조건 
+			* 모든필드 검색시 : *( 와일드카드 )
+
+		3. 삭제 : delete from 테이블명 where 조건 
+			
+		4. 수정 : update 테이블명 set 변경필드 = 값 , 변경필드2 = 값2 where 조건
+
+		* 키워드 
+			1. where : 조건 
+				1. and : 이면서 면서 이고 모두 그리고 
+				2. or : 이거나 거나 하나라도
+				
+********************************************************************************************************				
+
+*자료형 
+	1. int 			: 정수형 [ 4바이트 ] 
+	2. varchar(문자길이)	: 문자형 [ 가변길이 ]
+	3. timestamp		: 날짜/시간
+	
+*속성 
+	1. primary key 	: 기본키 
+	2. auto_increment	: 자동번호 주입
+	3. not null 	: null값 제외 [ null 일경우 오류 발생 ] 
+	4. default 	: 자동 초기값 주입
+*함수
+	1. now()  : 시스템 날짜/시간 함수 
+*******************************************************************************************************
+
+*SQL : 데이터베이스 관리 언어
+	DDL [ 정의어 ]
+		1. Create : 생성 
+			DB : create database db명 
+			Table : create table db명.테이블명(        
+
+				필드명 자료형 속성 ,
+				필드명2 자료형 속성 
+			)
+
+		2. Drop : 삭제 
+		
+		3. Alter : 수정 
+		
+create table javafx.board( 
+    					b_no int auto_increment primary key ,
+   						b_title varchar(100) not null ,
+    					b_contents varchar(5000) not null ,
+   						b_write varchar(15) not null ,
+    					b_date timestamp default now() ,
+    					b_view int default 0
+						)		
+*************************************  버튼 만들기  *********************************************************
+					
+Button[] buttons = new Button[30];         // 버튼 30개 저장소 
+      int z = 0;
+      for( int i = 0 ; i<30 ; i++ ) {
+         
+         buttons[i] = new Button("좌석" + String.format("%02d", i) );      // 메모리 할당 
+         buttons[i].setLayoutX( 30 + (z*60) );
+         
+         if( i % 10 == 0 ) z = 0;
+         if( i / 10 == 1 ) {
+            buttons[i].setLayoutX( 30 + (z*60) );
+            buttons[i].setLayoutY( 50 );
+         }
+         if( i / 20 == 1 ) {
+            buttons[i].setLayoutX( 30 + (z*60) );
+            buttons[i].setLayoutY( 100 );
+         }
+         buttons[i].setOnAction( e -> {
+            System.out.println( e.toString() +"좌석이 선택 되었습니다 ");
+         });
+      
+         loginpane.getChildren().add(buttons[i] ); // 배치 
+         z++;
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
