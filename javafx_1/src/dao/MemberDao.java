@@ -252,6 +252,53 @@ public class MemberDao {
 			
 		}
 		
+		//12 회원수 변환 메소드
+//		public int membercount (int a) {
+//			String b = null;
+//			if( a==1) {
+//				b = "member";
+//			}
+//			if(a==2) {
+//				b = "board";
+//			}
+//			if(a==3) {
+//				b = "product";
+//			}
+//			String sql = "select count(*) from "+b;
+//			
+//			try {
+//				preparedStatement= connection.prepareStatement(sql);
+//				resultSet = preparedStatement.executeQuery();
+//				
+//				if(resultSet.next()) {
+//					return resultSet.getInt(1);
+//				}else {
+//					return 0;
+//				}
+//			}catch (Exception e) {
+//				return 0;
+//			}
+//			
+//		}
+		
+		public int totalcount (String a) {
+	
+			String sql = "select count(*) from "+a;
+			
+			try {
+				preparedStatement= connection.prepareStatement(sql);
+				resultSet = preparedStatement.executeQuery();
+				
+				if(resultSet.next()) {
+					return resultSet.getInt(1);
+				}else {
+					return 0;
+				}
+			}catch (Exception e) {
+				return 0;
+			}
+			
+		}
 		
 		
 		

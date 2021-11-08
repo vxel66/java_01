@@ -185,8 +185,13 @@ Button[] buttons = new Button[30];         // 버튼 30개 저장소
          z++;
       }
 
+Button[] buttons = new Button[30]; 
 
-
+for(int i = 1; buttons.length+1 ; i++){
+	buttons[i] = new But	Button("좌석" + String.format("%02d", i) ); 
+	
+	
+}
 
 
 

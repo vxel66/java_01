@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import Domain.Product;
+import Domain.ProductCategory;
+import Domain.ProductDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -183,7 +187,75 @@ public class ProductDao {
 			
 		}
 		
+		//날짜별 제품수 변환 
+		public ArrayList<ProductDate> productDatelist() {
+			
+			ArrayList<ProductDate> productDates = new ArrayList<>();
+			String sql = "select substring_index(p_date,' ' , 1 ) , "+ 
+					"count(*) from product group by substring_index( p_date,' ' , 1 )";
+			
+			try {
+				
+				preparedStatement = connection.prepareStatement(sql);
+				resultSet = preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					ProductDate date =new ProductDate(resultSet.getString(1),resultSet.getInt(2));
+					
+					productDates.add(date);
+				}
+				return productDates;
+			}catch (Exception e) {
+				return productDates;
+			}
+					
+			
+		}
 		
+		public HashMap<String, Integer> productcategorylist() {
+			
+			HashMap<String,Integer> hashmap = new HashMap<String, Integer>();
+			
+			String sql = "select p_category,count(*) from product group by p_category";
+			
+			try {
+				
+				preparedStatement = connection.prepareStatement(sql);
+				resultSet = preparedStatement.executeQuery();
+				while(resultSet.next()) {
+						
+					hashmap.put(resultSet.getString(1), resultSet.getInt(2));
+					return hashmap;
+					
+				}
+				return hashmap;
+			}catch (Exception e) {
+				return hashmap;
+			}
+					
+			
+		}
+public ArrayList<ProductCategory> productcategorylist1() {
+			
+			ArrayList<ProductCategory> productDates = new ArrayList<>();
+			
+			String sql = "select  p_category,count(*) from product group by p_category";
+			
+			try {
+				
+				preparedStatement = connection.prepareStatement(sql);
+				resultSet = preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					ProductCategory date =new ProductCategory(resultSet.getString(1),resultSet.getInt(2));
+					
+					productDates.add(date);
+				}
+				return productDates;
+			}catch (Exception e) {
+				return productDates;
+			}
+					
+			
+		}
 		
 }
 
