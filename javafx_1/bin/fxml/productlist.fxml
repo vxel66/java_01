@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductlistController">
+   <children>
+      <TableView fx:id="productlist" layoutX="289.0" layoutY="124.0" prefHeight="425.0" prefWidth="397.0">
+        <columns>
+          <TableColumn prefWidth="90.0" text="제품명" />
+          <TableColumn minWidth="4.0" prefWidth="60.0" text="카테고리" />
+            <TableColumn prefWidth="119.0" text="가격" />
+            <TableColumn prefWidth="37.0" text="상태" />
+            <TableColumn prefWidth="102.0" text="등록날짜" />
+        </columns>
+      </TableView>
+      <Label layoutX="43.0" layoutY="31.0" prefHeight="59.0" prefWidth="193.0" text="Product List" />
+      <ImageView fx:id="pimg" fitHeight="187.0" fitWidth="247.0" layoutX="20.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="lblpname" layoutX="33.0" layoutY="357.0" prefHeight="27.0" prefWidth="214.0" text="제품명" />
+      <Label fx:id="lblpcontents" layoutX="33.0" layoutY="405.0" prefHeight="27.0" prefWidth="214.0" text="제품설명" />
+      <Label fx:id="lblmid" layoutX="33.0" layoutY="473.0" prefHeight="27.0" prefWidth="214.0" text="등록회원" />
+      <Label fx:id="lblpprice" layoutX="33.0" layoutY="529.0" prefHeight="27.0" prefWidth="214.0" text="제품가격" />
+      <Button fx:id="btnregister" layoutX="289.0" layoutY="559.0" mnemonicParsing="false" onAction="#register" prefHeight="27.0" prefWidth="397.0" text="제품등록" />
+      <Button fx:id="btnupdate" layoutX="162.0" layoutY="124.0" mnemonicParsing="false" onAction="#update" text="수정" visible="false" />
+      <Button fx:id="btndelete" layoutX="221.0" layoutY="124.0" mnemonicParsing="false" onAction="#delete" text="삭제" visible="false" />
+      <Button fx:id="btnactivation" layoutX="33.0" layoutY="124.0" mnemonicParsing="false" onAction="#activation" text="판매중" />
+   </children>
+</AnchorPane>
