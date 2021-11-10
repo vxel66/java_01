@@ -1,184 +1,86 @@
-	
-	
-		DML [조작어]
-			0. SQL 작성 [SQL : DB 조작어 DML]
-					
-			1. 삽입 :insert into 테이블명( 필드1 , 필드2 ) + values(값1,값2) 
-					"insert into board(b_title , b_contents ,b_write) value(?,?,?)";					 
-					모든 필드 삽입 : insert into 테이블명 value(값1,값2) - 필드명 생략
-			
-			2.검색: select 필드명 from 테이블명 wehere 조건
-					"select m_id from member where m_id=?";
-					*모든필드 겁색 : select*from 테이블명 where 조건
-					*모든필드 검색시 : *(와일드카드)
-			
-			3.삭제 delete from 테이블명 value (값1)
-					"delete  from member where m_email=?";	
-				
-			4.수정 update 테이블명 set 변경필드=값1 ,변경필드=값2
-					"update member set m_name = ? ,m_email =? where m_id = ?"
-					
-					
-			*키워드	
-				1.where :조건
-				2.and :이면서 
-				3.or : 또는
-				
+*SQL : 데이터베이스 관리 언어
+	DML [ 조작어 ]
+		1. 삽입 : insert into 테이블명( 필드1 , 필드2 ) values( 값1 , 값2 )
+			* 모든필드 삽입 : insert into 테이블명 values( 값1 , 값2 , 값3 )
+			* 모든필드 삽입시 : 필드명 생략   
 
-			 
-			 Connection connection;	//db 연결 인터페이스
-			 PreparedStatement preparedStatement; //sql 연결 인터페이스
-			 ResultSet resultSet;				// sql 결과(쿼리) 연결	
-			 	*? 에 데이터 넣기
-			 	
-			 	executeQuery : select
-				executeUpdate :	insert, delete, update
+		2. 검색 : select 필드명 from 테이블명 where 조건 
+			* 모든필드 검색 : select * from 테이블명 where 조건 
+			* 모든필드 검색시 : *( 와일드카드 )
+
+		3. 삭제 : delete from 테이블명 where 조건 
+			
+		4. 수정 : update 테이블명 set 변경필드 = 값 , 변경필드2 = 값2 where 조건
+
+		* 키워드 
+			1. where : 조건 
+				1. and : 이면서 면서 이고 모두 그리고 
+				2. or : 이거나 거나 하나라도
 				
-			 	
-			 	public MemberDao() {
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx?serverTime=UTC","root","1234");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-			 			 
-			 .next : 퀄리 결과의 다음 레코드 가져오기
-			 .get자료형 : 현재 레코드의 필드 가져오기 
-			
-			*CRUD [생성,읽기,수정,삭제]
 		
-			*MVC [ Model , View , Controller ]	
-				1.Model :데이터
-				2.View : 프론트엔드 [씬빌더.html]
-				3.Controller :java파일[클래스]
-				삽입:View --> DTO ---> Controller ---> Model ---> dao --->DB
-				조회:View <-- dto <-- Controller <--- Model <--- dao <--- DB
-			
-			
-			*DTO : 데이터 이동 객체 [Data Transter Object]
-			
-			*DAO : 데이베이스 기능 조작 객체 [Data Access Object]
-			
-			게시판설계
-			1.DB설계
-				게시물번호
-				게시물제목
-				게시물내용
-				게시물작성자 로그인id
-				게시물작성일 자동주입
-				게시물조회수
-				
-			
-			2.DTO설계
-			3.DAO설계
-			
-			4.FXML 작성
-			5.CONTROLLER작성
-			6.DAO 작성
-			
-			자료형
-			int 정수
-			varchar 문자열
-			timestamp 날짜/ 시간
-			
-			속성
-			pri
-			
-			PK:식별 가능한키 [실별필드 : 중복 x , NULL x]
-				ex)주민등록번호,사번,학번,카드번호,사업장번호,주소
-				다른 테이블과 연결시 사용되는 식별키 [대부분 1]
-				
-			FK:PK와 연결된 필드	
-				외래키	
-				다른 테이블의 PK왕 연결된 필드 [대부분 M]	
-			
-			SQL 데이터베이스 관리 언어
-				DDL[정의어]
-					1.Create :생성
-						DB:create database db명
-						Table:create table db명.테이블명(
-							필드명 자료형 속성,
-							필드명2 자려형 속성
-						)
-						create table javafx.board( 
-    					b_no int auto_increment primary key ,
-   						b_title varchar(100) not null ,
-    					b_contents varchar(5000) not null ,
-   						b_write varchar(15) not null ,
-    					b_date timestamp default now() ,
-    					b_view int default 0
-						)
-						
-						자료형 
-							1.int				정수형 [4바이트]
-							2.vaechar(문자길이)	문자형 [가변길이]	
-							3.timestamp			날짜/시간
-						속성
-							1.primary key 		:기본키
-							2.auto_increment	:자동번호 주입
-							3.not null			:null값 제외 [null일경우 오류발생]
-							4.default			:자동 초기값 주입
-						함수
-							1.now():시스템날짜 시간함수		
-					
-					2.Drop :삭제
-					3.Alter :수정
-			
-			
-					메소드 호출하는 방법
-					1.Controller 인스턴스	[다른 controller 에서 동일한 boardpane 사용] new이용한 객체 x
-													    //객체화
-	    public static MainpageController instance;
-	    
-	    public MainpageController() {
-	    	instance = this;
-	    }
-	    
-	    public static MainpageController getinstance() {
-	    	return instance;
-	    }
-	    
-				2.Dao 인스턴스 [해당 인스턴스 생성시 DB와 연결된 인스턴스 사용]
-			
-			private static BoardDao boardDao = new BoardDao();
-	
-		public static BoardDao getBoardDao() {
-			return boardDao;
-		}
-	
-		//2.생성자 db 연동
-		public BoardDao() {
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx?serverTime=UTC","root","1234");
-			} catch (Exception e) {		
-			}	
-		}
-			
-			
-		v 	입력받음
-
-		c	컨트롤에서 입력받은 값을 객체화 
-				*객체화:캡슐
-
-		m	클래스 [객체]
-				db처리[CRUD]
-				결과
-			
-			
+		*필드 추가 명령어
+		alter table 테이블명 add 필드명 필드타입
 		
+		*필드 삭제 명령어
+		alter table 테이블명 drop 필드명
+		
+		*필드 수정 명령어
+		alter table 테이블명 change 필드명 새필드명 새필드타입
+		
+		*필드타입 수정 명령어
+		alter table 테이블명 modify 필드명 새필드 타입
+		
+		*테이블이름 수정 명령어
+		alter table 테이블명 rename 새테이블명
+		
+				
+				
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++			
+		
+	*자료형 
+	1. int 			: 정수형 [ 4바이트 ] 
+	2. varchar(문자길이)	: 문자형 [ 가변길이 ]
+	3. timestamp		: 날짜/시간
+	
+*속성 
+	1. primary key 	: 기본키 
+	2. auto_increment	: 자동번호 주입
+	3. not null 	: null값 제외 [ null 일경우 오류 발생 ] 
+	4. default 	: 자동 초기값 주입
+*함수
+	1. now()  : 시스템 날짜/시간 함수 
+	2. count : 해당 필드의 레코드 수 (공백x)
+	   count(*) : 모든레코드의 수	(공백o)
+	3. substring_index(필드명 ,"분해기준" , 가져올 인덱스[1~])
+		substring_index( p_date,' ' , 1 )    
+	   		
+	   		
+	   		
+*SQL : 데이터베이스 관리 언어
+	DDL [ 정의어 ]
+		1. Create : 생성 
+			DB : create database db명 
+			Table : create table db명.테이블명(        
+
+				필드명 자료형 속성 ,
+				필드명2 자료형 속성 
+			)
+
+		2. Drop : 삭제 
+		
+		3. Alter : 수정 
+		
+*제약조건
+		PRIMARY KEY
+		foreign key
+		m_no int not null, foreign key(m_no) references member(m_no) 
+		unique
+		not null		
+
 			
-			
-			
-			
-			
-			
-			
-			
+	* 뷰 만들기
+	create view 뷰이름 as select 필드명 from 가져올 테이블명
+	create view membersam as select * from member		
 			
 			
 			
