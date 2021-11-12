@@ -200,9 +200,15 @@ Button[] buttons = new Button[30];         // 버튼 30개 저장소
 
 Button[] buttons = new Button[30]; 
 
+int x=0; int y=0;
+
 for(int i = 1; buttons.length+1 ; i++){
 	buttons[i] = new But	Button("좌석" + String.format("%02d", i) ); 
-	
+	     
+	      buttons[i].setLayoutX( 30 + (x*60) );
+          buttons[i].setLayoutY( 50 + (y*60) );
+	x++;
+	if(i%5==0) {x=0; y+=1;}
 	
 }
 
