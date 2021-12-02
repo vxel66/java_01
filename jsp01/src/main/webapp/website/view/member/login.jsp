@@ -12,8 +12,6 @@
 	
 	<%
 	
-	Cookie cookie = new Cookie("qweqwe","qweqwe");
-	response.addCookie(cookie);
 	
 	%>
 	
@@ -36,7 +34,7 @@
 							<input type="submit" value="로그인하기" class="form-control p-3 m-3" >
 					</div>
 					<div class="text-rigth m-2">
-						<a href="#" class="btn text-dark">비밀번호 찾기</a><a href="#" class="btn text-dark">아이디 찾기</a>
+						<a href="findpassword.jsp" class="btn text-dark">비밀번호 찾기</a><a href="findid.jsp" class="btn text-dark">아이디 찾기</a>
 					</div>
 				</form>
 			</div>

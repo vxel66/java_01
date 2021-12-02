@@ -14,7 +14,9 @@
 	<%@include file="footer.jsp" %>
 
 	<%
-		MemberDao.getmMemberDao();
+		if(request.getParameter("result")!=null&&request.getParameter("result").equals("false")){
+			session.removeAttribute("loginid");
+		}
 	%>
 	
 	

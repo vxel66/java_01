@@ -54,3 +54,198 @@ function sample4_execDaumPostcode() {
     }).open();
 }
 /* 다음주소 api end */
+
+// 아이디 중복체크 [ajax] start
+	$( function() {
+		$("#id").change(function() {
+			//비동기식 : $.ajax({속성명:"값",속성명:"값"});
+			$.ajax({
+				url : "idcheck.jsp", // 통신할 경로명
+				data : { userid:document.getElementById("signupform").id.value } ,	//이동할데이터	
+				success : function(abc){ //성공했을때
+					
+					if(abc != 1){
+						 document.getElementById("idresult").innerText="사용가능";
+						 document.getElementById("idresult").style.color="green";
+					}else{
+						document.getElementById("idresult").innerText="현재 사용중인 아이디입니다";
+						document.getElementById("idresult").style.color="red";
+					}
+				
+				}
+				
+			});
+		});
+		
+		// $ ("id명").이벤트명(함수명(){실행코드;});
+		
+	})
+		
+	
+// 아이디 중복체크 end
+
+// 회원가입 유효성검사 start
+
+	
+	function signupcheck(){
+		
+		//1.폼 가져오기
+		//document.getElementById("signupform")
+		//2.폼내 아이디 입력 input 가져오기
+		var id = document.getElementById("signupform").id.value;
+		var password = document.getElementById("password").value;
+		var passwordconfirm = document.getElementById("passwordconfirm").value;
+		var name = document.getElementById("name").value;
+		var birth = document.getElementById("birth").value;
+		var sex1 = document.getElementById("sex1").checked; //체크 유무
+		var sex2 = document.getElementById("sex2").checked;
+		var phone = document.getElementById("phone").value;
+			//alert(id);
+		//3. 유효성검사 [정규표현식 : 텍스트 패턴 검사]
+			//정규표현식
+			var idj = /^[a-z0-9]{5,12}$/;
+			var pwj = /^[A-Za-z0-9]{5,12}$/;
+			var phonej = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+			var namej= /^[가-힣]{3,5}$/;
+			/*
+				/^ :정규표현식 시작
+				$/ : 정규표현직 끈
+				[] : 문자 패턴
+					[a-z] : 소문자 a-z 만 가능
+					[A-Z] : 대문자 A-Z 만 가능
+					[0-9] : 숫자 0-9 만 가능
+					[가-힣] : 한글 만 가능
+				{최소값,최대값} : 문자 개수
+					{최소길이,최대길이} 
+					{5 , 12} : 5~15 길이만 가능
+				( ) : 문자 하나로 인식
+					01([0|1|6|7|8|9]?) : 중하나
+				와일드 카드
+				* : 문자 없거나 혹은 여러개 존재	
+				? : 문자 있거나 혹은 하나 있음	 [ ? 당 문자 1개 ]
+			*/ 
+			
+		if(!idj.test(id)){
+			//alert("가능");
+			document.getElementById("idresult").innerHTML="id는 소문자 숫자조합 5-15사이 가능";
+			document.getElementById("idresult").style.color="red";
+			return false;
+		}else{
+			document.getElementById("idresult").innerHTML="가능";
+			document.getElementById("idresult").style.color="green";
+		}
+		if(!pwj.test(password)){
+			document.getElementById("passwordresult").innerHTML="password는 소문자 숫자조합 5-15사이 가능";
+			document.getElementById("passwordresult").style.color="red";
+			return false;
+		}else{
+			document.getElementById("passwordresult").innerHTML="가능";
+			document.getElementById("passwordresult").style.color="green";
+		}
+		if(password==passwordconfirm){
+			document.getElementById("passwordconfirmresult").innerHTML="가능";
+			document.getElementById("passwordconfirmresult").style.color="green";
+		}else{
+			document.getElementById("passwordconfirmresult").innerHTML="비밀번호가 다릅니다";
+			document.getElementById("passwordconfirmresult").style.color="red";
+			return false;
+		}
+		
+		if(name==""){
+			document.getElementById("nameresult").innerHTML="이름을 입력해주세요";
+			document.getElementById("nameresult").style.color="red";
+			return false;
+		}
+		else{
+			document.getElementById("nameresult").innerHTML="이름이 입력되었습니다";
+			document.getElementById("nameresult").style.color="green";
+		}
+		if(!namej.test(name)){
+			//alert("가능");
+			document.getElementById("nameresult").innerHTML="이름은 한글만 가능합니다";
+			document.getElementById("nameresult").style.color="red";
+			return false;
+		}else{
+			document.getElementById("nameresult").innerHTML="가능";
+			document.getElementById("nameresult").style.color="green";
+		}
+		if(birth==""){
+			document.getElementById("birthresult").innerHTML="생일을 입력해주세요";
+			document.getElementById("birthresult").style.color="red";
+			return false;
+		}
+		else{
+			document.getElementById("birthresult").innerHTML="생일이 입력되었습니다";
+			document.getElementById("birthresult").style.color="green";
+		}
+		if(!sex1&&!sex2){ //둘다 false 이면 //둘다 체크를 안했으면
+			document.getElementById("sexresult").innerHTML="성별을 선택해주세요";
+			document.getElementById("sexresult").style.color="red";
+			return false;
+		}else{
+			document.getElementById("sexresult").innerHTML="가능";
+			document.getElementById("sexresult").style.color="green";
+		}
+		
+		if(phonej.test(phone)){
+			document.getElementById("phoneresult").innerHTML="가능";
+			document.getElementById("phoneresult").style.color="green";
+		}else{
+			document.getElementById("phoneresult").innerHTML="불가능";
+			document.getElementById("phoneresult").style.color="red";
+			return false;
+		}
+		
+		
+		
+		
+		
+	}
+	// 아이디찾기
+
+	$(function(){
+		$("#findidform").submit(function(){
+			alert("클릭");
+		});
+		
+	})
+		
+		
+	// 아이디찾기
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

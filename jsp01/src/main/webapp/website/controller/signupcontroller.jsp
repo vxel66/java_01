@@ -31,7 +31,7 @@
 	Cookie cookie = new Cookie("message","qwe");
 	response.addCookie(cookie);
 	
-	// 유효성검사 
+	/* // 유효성검사 
 			if( id.length() <5 ){
 				out.print("<script>alert('아이디 5~15 사이로 입력해주세요');</script>");
 				out.println("<script>location.href='../view/member/signup.jsp';</script>");
@@ -64,7 +64,7 @@
 				out.print("<script>alert('상세주소는 , 제외한 입력해주세요');</script>");
 				out.println("<script>location.href='../view/member/signup.jsp';</script>");
 			}
-			else {
+			else { */
 				// 객체화
 				Member member = new Member( id , password , name , birth , sex , phone , adress );
 				// DB처리
@@ -74,7 +74,7 @@
 				}else{	// 회원가입 실패
 					response.sendRedirect("../view/member/signup.jsp");
 				}
-			}
+			//}
 	%>
 
 

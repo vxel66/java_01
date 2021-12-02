@@ -75,7 +75,62 @@ public class MemberDao {
 		}		
 	}
 	
+	public boolean idcheck( String id  ) {
+		
+		String sql = "select * from member where m_id=? ";
+		try {
+			preparedStatement= connection.prepareStatement(sql);
+			preparedStatement.setString(1, id);
+			resultSet=preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println("memberlogin db 오류");
+			return false;
+		}		
+	}
 	
+	//맴버 정보 가져오기
+	public Member memberinfo( String id ) {
+		Member member= new Member();
+		String sql = "select m_id,m_password,m_name,m_brith,m_sex,m_phone,m_address from member where m_id=?";
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, id);
+			resultSet= preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				member = new Member(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
+						resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
+				return member;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("memberinfo db 오류");
+		}
+		return member;
+		
+	}
+	
+	//정보 업데이트 
+	public boolean infoupdate(String pw , String name, String address ,String id ) {
+		//update 테이블명 set 변경필드 = 값 , 변경필드2 = 값2 where 조건
+		String sql = "update member set m_password=? , m_name=? , m_address=? where m_id=? ";
+		try {
+			preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setString(1, pw);
+			preparedStatement.setString(2, name);
+			preparedStatement.setString(3, address);
+			preparedStatement.setString(4, id);
+			preparedStatement.executeQuery();
+			return true;
+		} catch (Exception e) {
+			System.out.println("infoupdate db 오류");
+			return false;
+		}
+	}
 	
 }
 
