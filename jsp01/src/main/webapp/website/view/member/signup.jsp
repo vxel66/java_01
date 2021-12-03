@@ -18,7 +18,7 @@
 				<img src="../../img/signup.webp" width="100%">
 			</div>
 			<div class="col-md-6"> 	
-				<form id="signupform" action="../../controller/signupcontroller.jsp" method="post" onsubmit="return signupcheck()">
+				<form id="signupform" action="../../controller/signupcontroller.jsp" method="post" onsubmit="return signupcheck();">
 					<div class="row">	<!-- 3:8 -->
 						<div class="col-md-3 m-2"> <label>아이디</label> </div>
 						<div class="col-md-8"> <input id="id" onchange="signupcheck();" type="text" name="id" class="form-control" maxlength="15"> </div>

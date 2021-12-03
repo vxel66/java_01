@@ -201,33 +201,195 @@ function sample4_execDaumPostcode() {
 		
 		
 	}
-	// 아이디찾기
-
+	// 회원탈퇴 [ajax : jqury 있어야함]
+	
 	$(function(){
-		$("#findidform").submit(function(){
-			alert("클릭");
+		$("#delete").click(function(){
+			// ajax : 비동기식 통신 { 페이지 이동없이 통신 }
+			$.ajax({
+				url : "../../controller/deletecontroller.jsp",
+				data : {password:document.getElementById("memberpw").value},
+				success: function( result ){
+					if(result==1){
+						alert('회원탈퇴 되었습니다');
+						location.href='../view/main.jsp';
+					}else{
+						document.getElementById("deleteresult").innerHTML="비밀번호가 다릅니다";
+					}
+				}
+				 		
+			})
 		});
+	});
 		
-	})
-		
-		
-	// 아이디찾기
+	// 이름 버튼변경
+	function namechange(){ 
+	document.getElementById("tdname").innerHTML = "<input type='text' id='name' class='form-control'> <button id='namechangebtn' class='form-control'>확인</button>"
 	
-		
-		
+	$(function(){
+		$("#namechangebtn").click(function(){
+			alert("클릭");
+			$.ajax({
+				url : "../../controller/namecontroller.jsp",
+				data : {type:1,
+						name:document.getElementById("name").value}, 	
+				success: function(result){
+					alert(result);
+					if(result==1){
+						alert('수정');
+						location.href='../member/myinfo.jsp';
+					}else{
+						alert('수정안됨');
+						location.href='../member/myinfo.jsp';
+					}
+				}	
+			})
+		});
+	});
 	
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	}
+	// 비번 버튼변경
+	function pwchange(){ 
+	document.getElementById("tdpw").innerHTML = "<input type='text' id='password' class='form-control'> <button id='passwordchangebtn' class='form-control'>확인</button>"           
+	
+	$(function(){
+		$("#passwordchangebtn").click(function(){
+			alert("클릭");
+			$.ajax({
+				url : "../../controller/namecontroller.jsp",
+				data : {type:2,
+						password:document.getElementById("password").value}, 	
+				success: function(result){
+					alert(result);
+					if(result==1){
+						alert('수정');
+						location.href='../member/myinfo.jsp';
+					}else{
+						alert('수정안됨');
+						location.href='../member/myinfo.jsp';
+					}
+				}	
+			})
+		});
+	});
+	
+	
+	}
+	
+		// 생년
+	function birchange(){ 
+	document.getElementById("tdbir").innerHTML = "<input type='date' id='birth' class='form-control'> <button id='birchangebtn' class='form-control'>확인</button>"
+	
+	$(function(){
+		$("#birchangebtn").click(function(){
+			alert("클릭");
+			$.ajax({
+				url : "../../controller/namecontroller.jsp",
+				data : {type:3,
+						bir:document.getElementById("birth").value}, 	
+				success: function(result){
+					alert(result);
+					if(result==1){
+						alert('수정');
+						location.href='../member/myinfo.jsp';
+					}else{
+						alert('수정안됨');
+						location.href='../member/myinfo.jsp';
+					}
+				}	
+			})
+		});
+	});
+	
+	
+	}
+			// 번호
+	function phonechange(){ 
+	document.getElementById("tdph").innerHTML = "<input type='text' id='phone' class='form-control'> <button id='phonechangebtn' class='form-control'>확인</button>" 
+	
+	$(function(){
+		$("#phonechangebtn").click(function(){
+			alert("클릭");
+			$.ajax({
+				url : "../../controller/namecontroller.jsp",
+				data : {type:4,
+						phone:document.getElementById("phone").value}, 	
+				success: function(result){
+					alert(result);
+					if(result==1){
+						alert('수정');
+						location.href='../member/myinfo.jsp';
+					}else{
+						alert('수정안됨');
+						location.href='../member/myinfo.jsp';
+					}
+				}	
+			})
+		});
+	});
+	
+	
+	}
+	//주소
+	function addressbtn(){ 
+	document.getElementById("address1").style.display="";
+	
+	$(function(){
+		$("#addresschange").click(function(){
+			alert("클릭");
+			$.ajax({
+				url : "../../controller/namecontroller.jsp",
+				data : {type:5,
+						address1:document.getElementById("sample4_postcode").value,
+						address2:document.getElementById("sample4_roadAddress").value,
+						address3:document.getElementById("sample4_jibunAddress").value,
+						address4:document.getElementById("sample4_detailAddress").value}, 	
+				success: function(result){
+					alert(result);
+					if(result==1){
+						alert('수정');
+						location.href='../member/myinfo.jsp';
+					}else{
+						alert('수정안됨');
+						location.href='../member/myinfo.jsp';
+					}
+				}	
+			})
+		});
+	});
+	}
+	
+			// 성별
+	function sexchange(){ 
+	document.getElementById("trsex").style.display="";	
+	var sex;
+	$("input[name='sex']:radio").change(function () {
+        	sex = this.value;
+        alert(sex);  
+	});
+	$(function(){
+		$("#sexchange").click(function(){
+			alert("클릭");
+			$.ajax({
+				url : "../../controller/namecontroller.jsp",
+				data : {type:6,
+						sex:sex}, 	
+				success: function(result){
+					alert(result);
+					if(result==1){
+						alert('수정');
+						location.href='../member/myinfo.jsp';
+					}else{
+						alert('수정안됨');
+						location.href='../member/myinfo.jsp';
+					}
+				}	
+			})
+		});
+	});
+	}
+		
 
 
 

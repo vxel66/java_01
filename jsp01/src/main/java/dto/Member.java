@@ -46,6 +46,17 @@ public class Member {
 		this.phone = phone;
 		this.adress = adress;
 	}
+	public Member(String id, String password, String name, String brith, String sex, String phone, String adress ,int point,String m_sdate ) {
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.brith = brith;
+		this.sex = sex;
+		this.phone = phone;
+		this.adress = adress;
+		this.point = point;
+		this.m_sdate = m_sdate;
+	}
 
 	public int getM_num() {
 		return m_num;
