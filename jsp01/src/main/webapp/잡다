@@ -1,0 +1,51 @@
+
+---------------------------------	Form vs js  --------------------------------
+			1.form 	: action , submit
+			2.js 	: onclick : js함수명() 
+		
+		
+		a href="#detail"
+		id="detail"
+
+---------------------------------	jquery js 갑 가져오기  --------------------------------
+		//제이쿼리를 이용한 값 가져오기
+		
+			//1.id속성 이용
+			var p_num2 = $("#p_num").val();	alert("id"+p_num2);
+			
+			//2.name속성 이용
+			var p_num3 = $("input[name=p_num]");	alert("name속성"+p_num3);
+			
+			//3.class송성 이용
+			var p_num4 = $(".p_num").val();	alert("class"+p_num4);
+		
+		
+		//자바스크립트 이용한 값가져오기
+		
+		//1. id속성 이용
+		
+			var p_num = document.getElementById("p_num").value; alert("s id"+p_num);
+			
+			//2. class 속성 이용 // class 속성 중복 허용 하기 때문에 배열 이용
+			var p_num5 = document.getElementsByClassName("p_num")[0].value;	alert("s class"+p_num5);
+			
+			//3. name속성 이용 // name 속성 중복 허용 하기 떄문에 배열 이용
+			var p_num6 = document.getElementsByName("p_num")[0].value;	alert("s name속성"+p_num6);
+
+---------------------------------	페이지 이동 [ 언어별 ]  --------------------------------
+		
+			<a href="페이지경로?병수명=값&변수명=값"> <a> 
+			js:location.href = "페이지경로?병수명=값&변수명=값"
+			jsp : reponse.sendRedirect("페이지경로?병수명=값&변수명=값")
+			
+			jquery[ajax] : 페이지 전환 x
+				$.ajax({ //페이지 전환이 없음 [해당 페이지와 통신]
+					url :  "#",
+					data : {변수명=값,변수명=값},
+					success : function(result){//통신결과
+					}
+				});	
+				
+
+
+
