@@ -534,7 +534,7 @@ function sample4_execDaumPostcode() {
 		
 		$.ajax({ //페이지 전환이 없음 [해당 페이지와 통신]
 			
-			url :  "../../controller/productcartcontroller1.jsp",
+			url :  "../../controller/productcartcontroller.jsp",
 			data : {p_num:p_num , p_size:p_size , p_count: p_count},
 			success : function(result){
 				if(confirm("장바구니에 담았습니다 [장바구니로 이동할까요?]") == true){
@@ -545,7 +545,59 @@ function sample4_execDaumPostcode() {
 		
 	}
 	
+	// 카트 비우기
 	
+	function cartdelete(type ,p_num , p_size){
+		
+		// js <---> jsp 클래스 호환 X
+		
+		$.ajax({ //페이지 전환이 없음 [해당 페이지와 통신]
+			
+			url :  "../../controller/productcartdeletecontroller.jsp",
+			data : {type:type,
+					p_num:p_num,
+					p_size:p_size},
+			success : function(result){
+				location.reload();
+			}
+		});
+		
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
