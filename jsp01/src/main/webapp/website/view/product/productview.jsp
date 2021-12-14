@@ -78,6 +78,7 @@
 							<span id="total"><%=product.getprice() %> </span>원 
 						</div>
 					</div> <br>
+					
 				<hr>
 				<div>
 					<button class="form-control bg-success text-white" style="font-size: 1.5rem">구매하기</button>

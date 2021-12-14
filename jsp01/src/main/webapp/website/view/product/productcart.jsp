@@ -16,6 +16,8 @@
 		String sname= "cart"+login.getM_id();
 		ArrayList<Cart> carts= (ArrayList<Cart>)session.getAttribute(sname);
 		
+		
+		
 	%>
 
 </body>

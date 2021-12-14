@@ -534,7 +534,7 @@ function sample4_execDaumPostcode() {
 		
 		$.ajax({ //페이지 전환이 없음 [해당 페이지와 통신]
 			
-			url :  "../../controller/productcartcontroller.jsp",
+			url :  "../../controller/productcartcontroller1.jsp",
 			data : {p_num:p_num , p_size:p_size , p_count: p_count},
 			success : function(result){
 				if(confirm("장바구니에 담았습니다 [장바구니로 이동할까요?]") == true){
@@ -544,6 +544,8 @@ function sample4_execDaumPostcode() {
 		});
 		
 	}
+	
+	
 
 
 
