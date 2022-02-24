@@ -9,6 +9,7 @@ public class member_tbl_02_DTO {
 	private String joindate;
 	private String grade;
 	private String city;
+	private String sales;
 	
 	public member_tbl_02_DTO() {
 		// TODO Auto-generated constructor stub
@@ -24,6 +25,17 @@ public class member_tbl_02_DTO {
 		this.joindate = joindate;
 		this.grade = grade;
 		this.city = city;
+	}
+	
+	
+	
+
+	public member_tbl_02_DTO(String custno, String custname, String grade, String sales) {
+		super();
+		this.custno = custno;
+		this.custname = custname;
+		this.grade = grade;
+		this.sales = sales;
 	}
 
 	public String getCustno() {
@@ -81,6 +93,16 @@ public class member_tbl_02_DTO {
 	public void setCity(String city) {
 		this.city = city;
 	}
+
+	public String getSales() {
+		return sales;
+	}
+
+	public void setSales(String sales) {
+		this.sales = sales;
+	}
+	
+	
 	
 	
 }

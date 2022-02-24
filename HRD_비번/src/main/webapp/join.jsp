@@ -1,3 +1,4 @@
+<%@page import="DAO.member_tbl_02_DAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -56,12 +57,18 @@
 	<%@include file = "header.jsp" %>
 	<%@include file = "menu.jsp" %>
 	<br>
+	
+	<%
+		member_tbl_02_DAO dao = new member_tbl_02_DAO();
+		int custno = dao.getcustno();
+	%>
+	
 	<center>
 		<h3>홈쇼핑 회원 등록</h3>
 		<form action="joincontroller.jsp" method="post" name="join">
 		<table>
 			<tr>
-				<td>회원번호(자동발생)</td><td><input type="text" name="custno"></td>
+				<td>회원번호(자동발생)</td><td><input type="text" name="custno" value="<%=custno %>"></td>
 			</tr>
 			<tr>
 				<td>회원성명</td><td><input type="text" name="custname"></td>
